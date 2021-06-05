@@ -1,8 +1,6 @@
-hello motu 2nd
-(update 2nd)
+import jdk.javadoc.internal.tool.Main;
 
-now see it carefully
-now see now to commit
-
-so understand?
-now add a second file and commit and upload by this method. i am watching
+public class first{
+    public static void main(String[] args){
+    System.out.println("Test Java");
+}}
