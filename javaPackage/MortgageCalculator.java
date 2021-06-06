@@ -1,45 +1,73 @@
 package javaPackage;
-
 import java.text.NumberFormat;
 import java.util.Scanner;
 
 
 public class MortgageCalculator {
+    final static byte MonthInYear=12;
+    final static byte Percentage =100;
     public static void main(String[] args){
-        final byte MonthInYear=12;
-        final byte Percentage =100;
+        
+        int principal= (int)readNumber("Principal :", 1000, 1_000_000);
+        double rate=readNumber("Rate :",1,30);
+        byte time = (byte)readNumber("Time :",1,30);
+        printMortgage(principal, rate, time);
+        printPaymentSummary(principal, rate, time);
+    }
+
+    private static void printMortgage(int principal, double rate, byte time) {
+        double result = calculateMortgage(principal, rate, time);
+        String results=NumberFormat.getCurrencyInstance().format(result);
+        System.out.println("MORTGAGE\n--------");
+        System.out.println("Monthly Payments: "+results);
+    }
+
+    private static void printPaymentSummary(int principal, double rate, byte time) {
+        System.out.println("\nPAYMENT SCHEDULE\n----------------");
+        for(short month=1;month<=time*MonthInYear;month++)
+        {
+            double balance =calculateBalance(principal, rate, time, month);
+            String balance_format =NumberFormat.getCurrencyInstance().format(balance);
+            System.out.println(balance_format);
+        }
+    }
+
+    public static double readNumber(String prompt, double min, double max){
         Scanner scanner = new Scanner(System.in);
-        int principal;
-        double rate;
-        byte time;
+        double value;
         while(true){
-      System.out.print("Principal ($1k - $1M) :");
-       principal = scanner.nextInt();
-      if(principal>=1000&&principal<=1000000)
-      break;
-      else System.out.println("Enter the number between 1,000 to 1,000,000");
+
+            System.out.print(prompt);
+             value = scanner.nextDouble();
+             if(value>=min&&value<=max)
+             break;
+             else
+             System.out.println("Enter the value between "+min +"and "+max);}
+             return value;
     }
-    while(true){
-      System.out.print("Rate :");
-       rate = scanner.nextDouble();
-      if(rate>0&&rate<=30)
-      break;
-      else
-      System.out.println("Enter the value greater than 0 and less than equal to 30 ");}
-      rate = rate/Percentage/MonthInYear;
-      while(true){
-      System.out.print("Time :");
-       time = scanner.nextByte();
-       if(time>0&&time<=30)
-       break;
-       else
-       System.out.println("Enter the value between 0 and 30");
+    public static double calculateMortgage(
+    int principal,
+    double rate,
+    byte time){
+       
+        rate = rate/Percentage/MonthInYear;
+        short numberOfPayments = (short)(time*MonthInYear);
+        double mortgage = principal*(rate*Math.pow(1+rate, numberOfPayments))/
+        (Math.pow(1+rate, numberOfPayments)-1);
+        return mortgage;
     }
-      int numberOfPayments = time*MonthInYear;
-      double mortgage = principal*(rate*Math.pow(1+rate, numberOfPayments))/
-                         (Math.pow(1+rate, numberOfPayments)-1);
-     String result=NumberFormat.getCurrencyInstance().format(mortgage);
-     System.out.println("Your monthly mortgage calculation is"+result);
+    public static double calculateBalance(
+        int principal,
+    double rate,
+    byte time,
+    short numberOfPaymentsMade
+    ){
+       
+        rate = rate/Percentage/MonthInYear;
+        short numberOfPayments = (short)(time*MonthInYear);    
+        double balance = principal
+        *(Math.pow(1+rate,numberOfPayments)-Math.pow(1+rate, numberOfPaymentsMade))/
+        (Math.pow(1+rate,numberOfPayments)-1);
+        return balance;
     }
-    
 }
