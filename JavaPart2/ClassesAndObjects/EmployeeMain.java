@@ -6,13 +6,13 @@ public class EmployeeMain {
     //employee.baseSalary=50_000;
     //employee.hourlyRate=10;
     employee.setBaseSalary(50_000);
-    int baseSalary=employee.getBaseSalary();
-    System.out.println(baseSalary);
+    //int baseSalary=employee.getBaseSalary();
+   // System.out.println(baseSalary);
 
     employee.sethourlyRate(20);
     int hourlyRate=employee.getHourlyRate();
     System.out.println(hourlyRate);
-    
+
     int results =employee.calculateWage1(10);
     System.out.println(results); 
   } 
