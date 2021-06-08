@@ -4,16 +4,32 @@ public class Employee {
     private int baseSalary;
     private int hourlyRate;
     private final int minBaseSalary=0;
-    private final int minHourlyRate=10;
+    private final int minHourlyRate=0;
+    public static int numberOfEmployees;
 
+    
     public Employee(int baseSalary, int hourlyRate){
         setBaseSalary(baseSalary);
         sethourlyRate(hourlyRate);
+        numberOfEmployees++;
+    }
+    public Employee(int baseSalary){
+       // setBaseSalary(baseSalary);
+       // sethourlyRate(0);
+       this(baseSalary, 0);
+    }
+    public static void printNumberOfEmployees(){
+        System.out.println(numberOfEmployees);
     }
 
     public int calculateWage1(int extraHours)
     {
         return baseSalary +(hourlyRate*extraHours);
+    }
+    public int calculateWage1()
+    {
+       // return baseSalary;
+       return calculateWage1(0);
     }
 
     private void setBaseSalary(int baseSalary){
