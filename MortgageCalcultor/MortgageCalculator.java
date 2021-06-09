@@ -1,4 +1,4 @@
-package javaPackage;
+package MortgageCalcultor;
 import java.text.NumberFormat;
 import java.util.Scanner;
 
@@ -16,7 +16,7 @@ public class MortgageCalculator {
     }
 
     private static void printMortgage(int principal, double rate, byte time) {
-        double result = calculateMortgage(principal, rate, time);
+        double result = MortgageCalculator.calculateMortgage(principal, rate, time);
         String results=NumberFormat.getCurrencyInstance().format(result);
         System.out.println("MORTGAGE\n--------");
         System.out.println("Monthly Payments: "+results);
@@ -26,7 +26,7 @@ public class MortgageCalculator {
         System.out.println("\nPAYMENT SCHEDULE\n----------------");
         for(short month=1;month<=time*MonthInYear;month++)
         {
-            double balance =calculateBalance(principal, rate, time, month);
+            double balance =MortgageCalculator.calculateBalance(principal, rate, time, month);
             String balance_format =NumberFormat.getCurrencyInstance().format(balance);
             System.out.println(balance_format);
         }
@@ -45,24 +45,14 @@ public class MortgageCalculator {
              System.out.println("Enter the value between "+min +"and "+max);}
              return value;
     }
-    public static double calculateMortgage(
-    int principal,
-    double rate,
-    byte time){
-       
-        rate = rate/Percentage/MonthInYear;
-        short numberOfPayments = (short)(time*MonthInYear);
-        double mortgage = principal*(rate*Math.pow(1+rate, numberOfPayments))/
-        (Math.pow(1+rate, numberOfPayments)-1);
-        return mortgage;
-    }
+
     public static double calculateBalance(
         int principal,
     double rate,
     byte time,
     short numberOfPaymentsMade
     ){
-       
+    
         rate = rate/Percentage/MonthInYear;
         short numberOfPayments = (short)(time*MonthInYear);    
         double balance = principal
@@ -70,4 +60,17 @@ public class MortgageCalculator {
         (Math.pow(1+rate,numberOfPayments)-1);
         return balance;
     }
+
+    public static double calculateMortgage(
+    int principal,
+    double rate,
+    byte time){
+    
+        rate = rate/Percentage/MonthInYear;
+        short numberOfPayments = (short)(time*MonthInYear);
+        double mortgage = principal*(rate*Math.pow(1+rate, numberOfPayments))/
+        (Math.pow(1+rate, numberOfPayments)-1);
+        return mortgage;
+    }
+    
 }
