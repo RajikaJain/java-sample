@@ -24,7 +24,6 @@ public class MortgageReport {
     public void printPaymentSummary() {
         System.out.println("\nPAYMENT SCHEDULE\n----------------");
         for(double balance:calculator.getRemainingBalance())
-       // String balance_format =NumberFormat.getCurrencyInstance().format(balance);
             System.out.println(currency.format(balance));
        
     } 
