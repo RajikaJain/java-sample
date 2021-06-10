@@ -7,58 +7,38 @@ public class MortgageCalculation {
     private double rate;
     private byte time;
 
-    public MortgageCalculation
-    (int principal, double rate, byte time)
-    {
+    public MortgageCalculation(int principal, double rate, byte time){
         this.principal = principal;
         this.rate = rate;
         this.time = time;
     }
-    public double calculateMortgage(
-       ){
-        
+    public double calculateMortgage(){
             double rate1 = getMonthlyRate();
             int numberOfPayments = numberOfPayments();
             double mortgage = principal*(rate1*Math.pow(1+rate1, numberOfPayments))/
             (Math.pow(1+rate1, numberOfPayments)-1);
             return mortgage;
-        }
+    }
     private double getMonthlyRate() {
         return rate/Percentage/MonthInYear;
     }
     
-        public double calculateBalance(
-       
-        short numberOfPaymentsMade
-        ){
-            double rate1 = rate/Percentage/MonthInYear;
-            short numberOfPayments = (short)(time*MonthInYear);    
-            double balance = principal
-            *(Math.pow(1+rate1,numberOfPayments)-Math.pow(1+rate1, numberOfPaymentsMade))/
+        public double calculateBalance(short numberOfPaymentsMade){
+            double rate1 = getMonthlyRate();
+            short numberOfPayments = numberOfPayments();    
+            double balance = principal*(Math.pow(1+rate1,numberOfPayments)-Math.pow(1+rate1, numberOfPaymentsMade))/
             (Math.pow(1+rate1,numberOfPayments)-1);
             return balance;
-           /* rate = getMonthlyRate();
-            int numberOfPayments = numberOfPayments();    
-            double balance = principal
-            *(Math.pow(1+rate,numberOfPayments)-Math.pow(1+rate, numberOfPaymentsMade))/
-            (Math.pow(1+rate,numberOfPayments)-1);
-            return balance;*/
+           
         }
-        private int numberOfPayments() {
-            int numberOfPayments = (int)(time*MonthInYear);
+        private short numberOfPayments() {
+            short numberOfPayments = (short)(time*MonthInYear);
             return numberOfPayments;
         }
         public double[] getRemainingBalance() {
-            double [] balances = new double[time*MonthInYear];
-            for(short month=1;month<=(time*MonthInYear);month++)
-            {
-               // double balance =calculateBalance(month);
-                balances[month-1]=calculateBalance(month);
-
+            double [] balances = new double[numberOfPayments()];
+            for(short month=1;month<=numberOfPayments();month++)
+            balances[month-1]=calculateBalance(month);
+            return balances;        
         }
-        return balances;
-        
-        
-           
-}
 }
