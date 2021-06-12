@@ -1,10 +1,12 @@
 package JavaPart2.Interfaces;
+//interface segregation principal
 
 public class Dragger {
-    public void drag(UIWidget widget)
+    public void drag(Draggable draggable)
     {
-        widget.drag();
+        draggable.drag();
         System.out.println("Dragging done!");
     }
+    
     
 }
