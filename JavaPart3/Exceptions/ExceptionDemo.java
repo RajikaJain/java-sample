@@ -6,9 +6,37 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 public class ExceptionDemo {
-  public static void show(){
-             var account = new Accounts();
-             account.deposit(1);
+  //RETHROWING EXCEPTIONS
+  public static void show() {
+    var account = new Accounts();
+    try {
+      account.withdraw(10);
+    } catch (AccountExceptions e) {
+      // TODO Auto-generated catch block
+   //  System.out.println(e.getMessage());
+     var cause = e.getCause();
+     System.out.println(cause.getMessage());
+   //e.printStackTrace();
+    }
+    //  var account = new Accounts();
+
+    //  try {
+    //   account.deposit(-1);
+    // } catch (IOException e) {
+    //   System.out.println("Logging");
+    //   throw e;
+      // TODO Auto-generated catch block}
+    }
+  
+ // public static void show(){
+            //THROWING EXCEPTIONS
+            //  var account = new Accounts();
+            //  try {
+            //   account.deposit(-1);
+            // } catch (IOException e) {
+            //   // TODO Auto-generated catch block
+            //   e.printStackTrace();
+            // }
 
 
 
@@ -88,9 +116,9 @@ public class ExceptionDemo {
     //     System.out.println(ex.getMessage());
     //     ex.printStackTrace();
     //   } //checked exceptions
-  }
+  //}
 
 private static void sayHello(String message) {
 System.out.println(message.toUpperCase());
-}  
-}
+} } 
+
