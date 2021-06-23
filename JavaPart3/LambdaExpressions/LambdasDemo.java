@@ -1,19 +1,182 @@
 package JavaPart3.LambdaExpressions;
 
-public class LambdasDemo {
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+ public class LambdasDemo {
+//    //COMBINING PREDICATES
+//  public static void show(){
+//    Predicate<String> hasLeftBrace = str-> str.startsWith("{");
+//    Predicate<String> hasRightBrace = str-> str.endsWith("}");
+
+//    Predicate<String> hasLeftAndRightBraces = hasLeftBrace.and(hasRightBrace);
+//    var result = hasLeftAndRightBraces.test("{key:value}");
+//    System.out.println(result);
+
+   
+//  }
+
+
+
+
+
+
+
+
+
+
+
+
+//    //PREDICATE INTERFACE
+//  public static void show(){
+//    Predicate<String> isLongerThan5 = str->str.length() >5;
+//    var result = isLongerThan5.test("sky");
+//    System.out.println(result);
+//  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//  //COMPOSING FUNCTIONS
+//   public static void show(){
+//     //"key:value"
+//     //first : "key= value"
+//     //second : "{key= value}"
+//     Function<String, String> replaceColon = str->str.replace(":","=");
+//     Function<String, String> addBraces = str->"{"+ str+ "}";
+//     //Declarative programming
+//     var result = replaceColon
+//                  .andThen(addBraces)
+//                  .apply("key:value");
+     
+//     var result1 = addBraces
+//                   .compose(replaceColon)
+//                   .apply("key:value");
+//     System.out.println(result1);
+//   }
+
+
+
+
+
+
+
+
+
+
+
+
+//  //FUNCTION INTERFACE
+// public static void show(){
+//   Function<String,Integer> map = str ->str.length();
+//   var length = map.apply("Sky");
+//   System.out.println(length);
+// }
+
+
+
+
+
+
+
+
+
+
+//    //SUPPLIER INTERFACE
+// public static void show(){
+//  // Supplier<Double> getRandom = ()->{return Math.getRandom();}
+//  Supplier<Double> getRandom = () -> Math.random();
+//   var random = getRandom.get(); //lazy evaluation
+//   System.out.println(random);
+// }
+
+
+
+
+
+
+
+
+
+
+
+// //Chain Consumers
+// public static void show(){
+//   List<String> list = List.of("a","b","c");
+//   Consumer<String> print = item->System.out.println(item);
+//   Consumer<String> printUpperCase = item->System.out.println(item.toUpperCase());
+
+//   list.forEach(print.andThen(printUpperCase)); //chaining two lambda expression
+//   list.forEach(print.andThen(printUpperCase).andThen(print)); //chaining 3 lambda expression
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Consumer interface
+//   public static void show(){
+//     List<Integer> list = List.of(1,2,3);
+
+//     //Imperative Programming - implementing logic using instruction - egg -for loop , if/else, switch/case
+//     for(var item :list)
+//     System.out.println(item);
+//     //Declarative programming - instead of using instructions to specify how it should be done we specify what needs to be done
+//     list.forEach(item ->System.out.println(item)); //consumer interface 
+//   }
+
+
+
+
+
+
+
+
+
+
+
 
 //METHOD REFRENCE - CONSTRUCTOR
-public LambdasDemo(String message) {}
+// public LambdasDemo(String message) {}
 
-public void show(){
+// public void show(){
 
-greet(message -> new LambdasDemo(message)); 
-greet(LambdasDemo::new);//constructor - new
+// greet(message -> new LambdasDemo(message)); 
+// greet(LambdasDemo::new);//constructor - new
 
-}
-public static void greet(Printer printer) {
-  printer.print("Hello World");
-}
+// }
+// public static void greet(Printer printer) {
+//   printer.print("Hello World");
+// }
 
 
 
