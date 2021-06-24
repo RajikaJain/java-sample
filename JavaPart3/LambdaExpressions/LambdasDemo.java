@@ -1,11 +1,58 @@
 package JavaPart3.LambdaExpressions;
 
 import java.util.List;
+import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
  public class LambdasDemo {
+     //UNARY OPERATOR INTERFACE
+ public static void show(){
+     UnaryOperator<Integer> square = n-> n*n;
+     UnaryOperator<Integer> increment = n-> n+1;
+
+     var result = increment.andThen(square).apply(1);
+     System.out.println(result);
+ }
+
+
+
+
+
+
+
+
+
+
+
+    //public static void show(){
+    //CHAINING BINARY OPERATOR
+    //A,B ->a+b -> square
+    // BinaryOperator<Integer> add = (a,b) -> a+b;
+    // Function<Integer, Integer> square = (a) ->a*a;
+
+    // var result = add.andThen(square).apply(1,2);
+    // System.out.println(result);
+
+
+
+
+    //a,b -> a+b
+    //BinaryOperatorInterface
+    //   BinaryOperator<Integer> add = (a,b)->a+b;
+    //   var result = add.apply(1,2);
+    //   System.out.println(result);
+    //}
+
+
+
+
+
+
+
+
 //    //COMBINING PREDICATES
 //  public static void show(){
 //    Predicate<String> hasLeftBrace = str-> str.startsWith("{");
